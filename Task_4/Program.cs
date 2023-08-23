@@ -3,33 +3,21 @@
 // необходимо вызвать событие и информировать об этом пользователя.
 // Обработку события произвести либо при помощи анонимного метода, либо при помощи лямбда-вырожения.
 
-delegate int Sum(int number);
+using Task_4;
 
-class Program
+
+
+
+    Album album = new Album();
+
+album.Notify += delegate (string msg)
 {
-    static Sum SomeVar()
-    {
-        int result = 0;
+    Console.WriteLine(msg);
+};
 
-        // Вызов анонимного метода
-        Sum del = delegate (int number)
-        {
-            for (int i = 0; i <= number; i++)
-                result += i;
-            return result;
-        };
-        return del;
-    }
-
-    static void Main()
-    {
-        Sum del1 = SomeVar();
-
-        for (int i = 1; i <= 5; i++)
-        {
-            Console.WriteLine("Cумма {0} равна: {1}", i, del1(i));
-        }
-
-        Console.ReadLine();
-    }
+for (int i = 0; i < 20; i++)
+{
+    album.AddSong();
 }
+
+
